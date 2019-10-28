@@ -1,0 +1,24 @@
+A gets 'hello'
+
+B gets 'world'
+
+A_B := A B
+
+Numbers := 45.2 3.7 -35.3 87.14
+
+SumNumbers := sum Numbers
+
+TallyNumbers := tally Numbers
+
+LinkAB := link A ' ' B
+
+NumsHello := (count 5) 'hello'
+
+Table := 3 4 reshape count 12
+
+TransTable := transpose Table
+
+TableCols := cols Table
+
+TableRows := rows Table
+
