@@ -1,3 +1,7 @@
+set "diagram
+
+set "decor
+
 A gets 'hello'
 
 B gets 'world'
@@ -14,11 +18,58 @@ LinkAB := link A ' ' B
 
 NumsHello := (count 5) 'hello'
 
+% Create table
+
 Table := 3 4 reshape count 12
+
+% Rows are cols
 
 TransTable := transpose Table
 
+% Cols
+
 TableCols := cols Table
 
+% Rows
+
 TableRows := rows Table
+
+% Corresponding elements
+
+PackTableRows := pack TableRows
+
+% Define operation
+
+average IS OPERATION A { sum A / tally A }
+
+% Three dimensional array
+
+TDA gets 2 3 4 reshape count 24
+
+% List of tables
+
+LOT gets 1 raise TDA
+
+% Table of lists
+
+TOL gets 2 raise TDA
+
+% Reverse list
+
+Rev_LOT gets reverse LOT
+
+% Reverse each element
+
+Rev_LOT_items gets EACH reverse LOT
+
+% Undo raise with mix
+
+TDA1 := mix LOT
+
+TDA2 := mix TOL
+
+
+
+
+
 
