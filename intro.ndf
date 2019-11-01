@@ -1,72 +1,67 @@
-set "diagram
+set "diagram ;
 
-set "decor
+A gets 'hello' ;
+B gets 'world' ;
+A_B := A B ;
+Numbers := 45.2 3.7 -35.3 87.14 ;
+SumNumbers := sum Numbers ;
+TallyNumbers := tally Numbers ;
+LinkAB := link A ' ' B ;
+NumsHello := (count 5) 'hello' ;
 
-A gets 'hello'
+% Create table ;
+Table := 3 4 reshape count 12 ;
 
-B gets 'world'
+% Rows are cols ;
+TransTable := transpose Table ;
 
-A_B := A B
+% Cols ;
+TableCols := cols Table ;
 
-Numbers := 45.2 3.7 -35.3 87.14
+% Rows ;
+TableRows := rows Table ;
 
-SumNumbers := sum Numbers
+% Corresponding elements ;
+PackTableRows := pack TableRows ;
 
-TallyNumbers := tally Numbers
-
-LinkAB := link A ' ' B
-
-NumsHello := (count 5) 'hello'
-
-% Create table
-
-Table := 3 4 reshape count 12
-
-% Rows are cols
-
-TransTable := transpose Table
-
-% Cols
-
-TableCols := cols Table
-
-% Rows
-
-TableRows := rows Table
-
-% Corresponding elements
-
-PackTableRows := pack TableRows
-
-% Define operation
-
+% Define operation ;
 average IS OPERATION A { sum A / tally A }
 
-% Three dimensional array
+% Three dimensional array ;
+TDA gets 2 3 4 reshape count 24 ;
 
-TDA gets 2 3 4 reshape count 24
+% List of tables ;
+LOT gets 1 raise TDA ;
 
-% List of tables
+% Table of lists ;
+TOL gets 2 raise TDA ;
 
-LOT gets 1 raise TDA
+% Reverse list ;
+Rev_LOT gets reverse LOT ;
 
-% Table of lists
+% Reverse each element ;
+Rev_LOT_items gets EACH reverse LOT ;
 
-TOL gets 2 raise TDA
+% Undo raise with mix ;
+TDA1 := mix LOT ;
+TDA2 := mix TOL ;
 
-% Reverse list
+Data gets 3 3 reshape 23 34 12 38 18 26 37 13 42 ;
+Corner := phrase 'Crop Yields' ;
+Collab := "Oats "Rice "Corn ;
+Rowlab := EACH phrase 'None' 'Arsenic' 'Old Lace' ;
 
-Rev_LOT gets reverse LOT
+labeltable IS OPERATION Corner Rowlabel Columnlabel Table {
+	% Combine the labels ;
+	Firstrow := Corner hitch Columnlabel ;
+	% Hitch labels to the rows ;
+	Labelledrows := Rowlabel EACHBOTH hitch rows Table ;
+	% Hitch labels to the rows and mix ;
+	mix ( Firstrow hitch Labelledrows ) }
 
-% Reverse each element
 
-Rev_LOT_items gets EACH reverse LOT
+Result := labeltable Corner Rowlab Collab Data ;
 
-% Undo raise with mix
-
-TDA1 := mix LOT
-
-TDA2 := mix TOL
 
 
 
