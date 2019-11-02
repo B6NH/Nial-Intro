@@ -62,9 +62,51 @@ labeltable IS OPERATION Corner Rowlabel Columnlabel Table {
 
 Result := labeltable Corner Rowlab Collab Data ;
 
+X := 2 3 reshape (8 9) 23 'hello world' "goodbye (tell 3 2) ([sin,cos]0.5) ;
 
+% 2 3 ;
+shapeX := shape X ;
+% 2 ;
+valenceX := valence X ;
+% 2 * 3 = 6 ;
+tallyX := tally X ;
 
+notation1 := 2 3 reshape 4 5 6 7 8 9 ;
+notation2 := reshape ((2 3)(4 5 6 7 8 9)) ;
 
+% 2 4 ;
+firsts := (EACH first)((2 3)(4 5 6 7 8 9)) ;
+
+% 2 15 ;
+exampleSum := 2 3 4 EACH first sum 4 5 6 ;
+
+% Bracket notation ;
+ex1 := [34,275,86,-52] ;
+ex2 := [] ;
+
+% Atlas ;
+atlas := [sin,cos,sqrt] 3.14 ;
+
+average2 IS / [sum,tally]
+
+T := 3 4 reshape count 12 ;
+
+% Grid adresses ;
+grd := grid T ;
+
+elem1 := 1 2 pick T ;
+
+C := count 5 ;
+
+% Last element ;
+elem2 := 4 pick C ;
+elem3 := [4] pick C ;
+
+% Multiple items ;
+mult := [1 2,2 3,0 0] choose T ;
+
+% Indexing notation ;
+elem4 := T@(1 2)
 
 
 
