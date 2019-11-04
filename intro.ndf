@@ -108,5 +108,46 @@ Mult := [1 2,2 3,0 0] choose T ;
 % Indexing notation ;
 Elem_4 := T@(1 2) ;
 
+% Assignment Expressions ;
+Z gets count 20 ;
+A B C := 10 20 30 ;
+Z@2 := tell Z@5 ;
 
+% Selector Expressions ;
+
+H gets 0 ;
+
+W gets IF H = 0 THEN
+	"Infinity
+ELSE
+	B / abs A 
+ENDIF ;
+
+R gets -2 ;
+U gets 10 ;
+
+IF R=0 THEN
+	G := ?undefined ;
+ELSEIF R < 0 THEN
+	G := U / opposite R ;
+ELSE
+	G := U / R ;
+ENDIF ;
+
+% write link 'G is ' (string G) ;
+
+% Case expression ;
+DD gets 45 ;
+N gets 2 ;
+
+J := CASE N FROM
+	1: sin DD END
+	2: cos DD END
+	3: tan DD END
+	ELSE
+		fault 'unexpected value of N'
+	ENDCASE ;
+
+% Iterations ;
+% ... ;
 
