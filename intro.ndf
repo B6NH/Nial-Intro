@@ -137,17 +137,37 @@ ENDIF ;
 % write link 'G is ' (string G) ;
 
 % Case expression ;
-DD gets 45 ;
-N gets 2 ;
+Angle gets 45 ;
+N_var gets 2 ;
 
-J := CASE N FROM
-	1: sin DD END
-	2: cos DD END
-	3: tan DD END
+Case_result := CASE N_var FROM
+	1: sin Angle END
+	2: cos Angle END
+	3: tan Angle END
 	ELSE
-		fault 'unexpected value of N'
+		fault 'unexpected value of N_var'
 	ENDCASE ;
 
 % Iterations ;
-% ... ;
+
+% While ;
+File := open "myfile "r ;
+Record := readfile File ;
+WHILE Record ~= ??eof DO
+	% write Record ;
+	Record := readfile File ;
+ENDWHILE ;
+close File ;
+
+% For ;
+P gets count 21 ;
+
+FOR I WITH count 20 DO
+	P@I := I*I ;
+ENDFOR
+
+Records := getfile "myfile ;
+FOR Record with Records DO
+	 % write Record ;
+ENDFOR ;
 
