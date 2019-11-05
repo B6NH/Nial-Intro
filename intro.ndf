@@ -193,4 +193,31 @@ Other_block gets
   Loc_var := 5 5 reshape Non_loc_var ;
   EACH average3 cols Loc_var }
 
+% Parametrized operation ;
+
+compare IS OPERATION X Y {
+	Maxs := EACH max X Y ;
+	Mins := EACH min X Y ;
+	>= Maxs and <= Mins }
+
+
+Comp_res := 2 5 3 9 compare 6 4 5 ;
+Comp_res2 := compare [3 4 5 6, 4 5 6 7] ;
+
+% Nameless operation ;
+
+Lambda_res gets
+	(OPERATION X Y {
+		Maxs := EACH max X Y ;
+		Mins := EACH min X Y ;
+		>= Maxs and <= Mins }) [3 4 5 6, 4 5 6 7] ;
+
+Lambda_res2 gets 3 4 5 6
+	(OPERATION X Y {
+		Maxs := EACH max X Y ;
+		Mins := EACH min X Y ;
+		>= Maxs and <= Mins }) 4 5 6 7 ;
+
+% Transformer ;
+% ... ;
 
