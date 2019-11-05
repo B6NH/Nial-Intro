@@ -219,5 +219,32 @@ Lambda_res2 gets 3 4 5 6
 		>= Maxs and <= Mins }) 4 5 6 7 ;
 
 % Transformer ;
-% ... ;
+
+TWICE is TRANSFORMER f OPERATION A { f f A }
+
+Twice_res := TWICE (5+) 20 ;
+
+RECURR IS TR process_leaf process_label comb OP Tree {
+	IF tally Tree = 1 THEN
+		process_leaf first Tree
+	ELSE
+		New_label := process_label first Tree ;
+		Children := rest Tree ;
+		New_children := EACH ( RECURR [process_leaf,process_label,comb]) Children ;
+		New_label comb New_Children
+	ENDIF }
+
+A_tree gets
+	["Root,
+		["L10,
+			["L20,25,13],
+			["L21,-20,45,15]],
+		["L11,100],
+		["L12,1000]] ;
+
+
+leaves IS RECURR [pass,pass,link second] ;
+sum_leaves IS RECURR [pass,pass,sum second] ;
+add_one IS RECURR [1+,pass,hitch] ;
+change_labels IS RECURR [pass,"LAB first,hitch] ;
 
