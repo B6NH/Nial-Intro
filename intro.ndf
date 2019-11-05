@@ -177,6 +177,20 @@ WHILE (Record := readfile File) ~= ??eof DO
 ENDWHILE ;
 close File ;
 
+% Blocks ;
 
+Block_result gets
+{ NONLOCAL Some_var ;
+  Some_var := count 25 ;
+  Other_var := 5 5 reshape Some_var ;
+  EACH average cols Other_var }
+
+
+Other_block gets
+{ NONLOCAL Non_loc_var;
+  average3 IS OP A { sum A / tally A } ;
+  Non_loc_var := count 25 ;
+  Loc_var := 5 5 reshape Non_loc_var ;
+  EACH average3 cols Loc_var }
 
 
