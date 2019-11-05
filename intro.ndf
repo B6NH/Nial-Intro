@@ -171,3 +171,12 @@ FOR Record with Records DO
 	 % write Record ;
 ENDFOR ;
 
+File := open "myfile "r ;
+WHILE (Record := readfile File) ~= ??eof DO
+	% write Record ;
+ENDWHILE ;
+close File ;
+
+
+
+
