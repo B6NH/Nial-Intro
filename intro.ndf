@@ -248,3 +248,22 @@ sum_leaves IS RECURR [pass,pass,sum second] ;
 add_one IS RECURR [1+,pass,hitch] ;
 change_labels IS RECURR [pass,"LAB first,hitch] ;
 
+
+Edges := ("a "b)("a "c)("c "g)("g "k)("d "e)("e "k) ;
+
+pathtest is OP Edges Node1 Node2 {
+  Lnksfrm_node1 := EACH first Edges match Node1 sublist Edges ;
+  IF Node2 in EACH second Lnksfrm_node1 THEN
+    True
+  ELSE
+    Linkednodes := EACH second Lnksfrm_node1 ;
+    Found := False ;
+    I := 0 ;
+    WHILE not Found and (I < tally Linkednodes) DO
+      Found := pathtest Edges Linkednodes@I Node2 ;
+      I := I + 1 ;
+    ENDWHILE ;
+    Found
+  ENDIF }
+
+
