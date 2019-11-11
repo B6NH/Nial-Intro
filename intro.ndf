@@ -265,5 +265,22 @@ pathtest is OP Edges Node1 Node2 {
     ENDWHILE ;
     Found
   ENDIF }
+  
+
+findpath is OP Edges Node1 Node2 {
+  Lnksfrm_node1 := EACH first Edges match Node1 sublist Edges ;
+  IF Node2 in EACH second Lnksfrm_node1 THEN
+    Node1 Node2
+  ELSE
+    Linkednodes := EACH second Lnksfrm_node1 ;
+    Foundpath := Null ;
+    I := 0 ;
+    WHILE empty Foundpath and (I < tally Linkednodes) DO
+      Foundpath := findpath Edges Linkednodes@I Node2 ;
+      I := I + 1 ;
+    ENDWHILE ;
+    IF not empty Foundpath THEN Foundpath := Node1 hitch Foundpath ; ENDIF ;
+    Foundpath
+  ENDIF }
 
 
