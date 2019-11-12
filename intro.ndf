@@ -282,5 +282,42 @@ findpath is OP Edges Node1 Node2 {
     IF not empty Foundpath THEN Foundpath := Node1 hitch Foundpath ; ENDIF ;
     Foundpath
   ENDIF }
+  
+  
+Edges2 := ("a "b)("a "c)("c "g)("g "k)("d "e)("e "k)("a "d) ;
+
+% Only for acyclic graphs ;
+findpaths is OP Edges Node1 Node2 {
+  Lnksfrm_node1 := EACH first Edges match Node1 sublist Edges ;
+  IF Node2 in EACH second Lnksfrm_node1 THEN
+    Paths := [ Node1 node2 ] ;
+  ELSE
+    Paths := Null ;
+  ENDIF ;
+  Linkednodes := EACH second Lnksfrm_node1 ;
+  FOR Node WITH Linkednodes except [Node2] DO
+    Newpaths := findpaths Edges Node Node2 ;
+    Paths := Paths link (Node1 EACHRIGHT hitch Newpaths) ;
+  ENDFOR ;
+  Paths }
+  
+% Works with cyclic graphs ;
+findpaths2 is OPERATION Edges Node1 Node2 Encountered {
+  Lnksfrm_node1 := EACH first Edges match Node1 sublist Edges ;
+  If Node2 in EACH second Lnksfrm_node1 THEN
+    Paths := [ Node1 Node2 ] ;
+  ELSE
+    Paths := Null ;
+  ENDIF ;
+  Encountered := Encountered append Node1 ;
+  Linkednodes := EACH second Lnksfrm_node1 except Encountered ;
+  FOR Node WITH Linkednodes except [Node2] DO
+    Newpaths := findpaths2 Edges Node Node2 Encountered ;
+    Paths := Paths link (Node1 EACHRIGHT hitch Newpaths)
+  ENDFOR ;
+  Paths }
+  
+  
+Cyclic_graph := ("a "b)("b "c)("b "d)("c "a)("d "c) ;
 
 
