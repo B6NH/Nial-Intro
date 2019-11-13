@@ -320,4 +320,8 @@ findpaths2 is OPERATION Edges Node1 Node2 Encountered {
   
 Cyclic_graph := ("a "b)("b "c)("b "d)("c "a)("d "c) ;
 
+Result := eval parse scan '2*8'
+
+
+
 
