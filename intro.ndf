@@ -52,12 +52,12 @@ Collab := "Oats "Rice "Corn ;
 Rowlab := EACH phrase 'None' 'Arsenic' 'Old Lace' ;
 
 labeltable IS OPERATION Corner Rowlabel Columnlabel Table {
-	% Combine the labels ;
-	Firstrow := Corner hitch Columnlabel ;
-	% Hitch labels to the rows ;
-	Labelledrows := Rowlabel EACHBOTH hitch rows Table ;
-	% Hitch labels to the rows and mix ;
-	mix ( Firstrow hitch Labelledrows ) }
+  % Combine the labels ;
+  Firstrow := Corner hitch Columnlabel ;
+  % Hitch labels to the rows ;
+  Labelledrows := Rowlabel EACHBOTH hitch rows Table ;
+  % Hitch labels to the rows and mix ;
+  mix ( Firstrow hitch Labelledrows ) }
 
 
 Result := labeltable Corner Rowlab Collab Data ;
@@ -127,11 +127,11 @@ R gets -2 ;
 U gets 10 ;
 
 IF R=0 THEN
-	G := ?undefined ;
+  G := ?undefined ;
 ELSEIF R < 0 THEN
-	G := U / opposite R ;
+  G := U / opposite R ;
 ELSE
-	G := U / R ;
+  G := U / R ;
 ENDIF ;
 
 % write link 'G is ' (string G) ;
@@ -141,12 +141,12 @@ Angle gets 45 ;
 N_var gets 2 ;
 
 Case_result := CASE N_var FROM
-	1: sin Angle END
-	2: cos Angle END
-	3: tan Angle END
-	ELSE
-		fault 'unexpected value of N_var'
-	ENDCASE ;
+  1: sin Angle END
+  2: cos Angle END
+  3: tan Angle END
+  ELSE
+    fault 'unexpected value of N_var'
+  ENDCASE ;
 
 % Iterations ;
 
@@ -154,8 +154,8 @@ Case_result := CASE N_var FROM
 File := open "myfile "r ;
 Record := readfile File ;
 WHILE Record ~= ??eof DO
-	% write Record ;
-	Record := readfile File ;
+  % write Record ;
+  Record := readfile File ;
 ENDWHILE ;
 close File ;
 
@@ -163,17 +163,17 @@ close File ;
 P gets count 21 ;
 
 FOR I WITH count 20 DO
-	P@I := I*I ;
+  P@I := I*I ;
 ENDFOR
 
 Records := getfile "myfile ;
 FOR Record with Records DO
-	 % write Record ;
+  % write Record ;
 ENDFOR ;
 
 File := open "myfile "r ;
 WHILE (Record := readfile File) ~= ??eof DO
-	% write Record ;
+  % write Record ;
 ENDWHILE ;
 close File ;
 
@@ -196,9 +196,9 @@ Other_block gets
 % Parametrized operation ;
 
 compare IS OPERATION X Y {
-	Maxs := EACH max X Y ;
-	Mins := EACH min X Y ;
-	>= Maxs and <= Mins }
+  Maxs := EACH max X Y ;
+  Mins := EACH min X Y ;
+  >= Maxs and <= Mins }
 
 
 Comp_res := 2 5 3 9 compare 6 4 5 ;
@@ -207,16 +207,16 @@ Comp_res2 := compare [3 4 5 6, 4 5 6 7] ;
 % Nameless operation ;
 
 Lambda_res gets
-	(OPERATION X Y {
-		Maxs := EACH max X Y ;
-		Mins := EACH min X Y ;
-		>= Maxs and <= Mins }) [3 4 5 6, 4 5 6 7] ;
+  (OPERATION X Y {
+    Maxs := EACH max X Y ;
+    Mins := EACH min X Y ;
+    >= Maxs and <= Mins }) [3 4 5 6, 4 5 6 7] ;
 
 Lambda_res2 gets 3 4 5 6
-	(OPERATION X Y {
-		Maxs := EACH max X Y ;
-		Mins := EACH min X Y ;
-		>= Maxs and <= Mins }) 4 5 6 7 ;
+  (OPERATION X Y {
+    Maxs := EACH max X Y ;
+    Mins := EACH min X Y ;
+    >= Maxs and <= Mins }) 4 5 6 7 ;
 
 % Transformer ;
 
@@ -225,22 +225,22 @@ TWICE is TRANSFORMER f OPERATION A { f f A }
 Twice_res := TWICE (5+) 20 ;
 
 RECURR IS TR process_leaf process_label comb OP Tree {
-	IF tally Tree = 1 THEN
-		process_leaf first Tree
-	ELSE
-		New_label := process_label first Tree ;
-		Children := rest Tree ;
-		New_children := EACH ( RECURR [process_leaf,process_label,comb]) Children ;
-		New_label comb New_Children
-	ENDIF }
+  IF tally Tree = 1 THEN
+    process_leaf first Tree
+  ELSE
+    New_label := process_label first Tree ;
+    Children := rest Tree ;
+    New_children := EACH ( RECURR [process_leaf,process_label,comb]) Children ;
+    New_label comb New_Children
+  ENDIF }
 
 A_tree gets
-	["Root,
-		["L10,
-			["L20,25,13],
-			["L21,-20,45,15]],
-		["L11,100],
-		["L12,1000]] ;
+  ["Root,
+    ["L10,
+      ["L20,25,13],
+      ["L21,-20,45,15]],
+    ["L11,100],
+    ["L12,1000]] ;
 
 
 leaves IS RECURR [pass,pass,link second] ;
